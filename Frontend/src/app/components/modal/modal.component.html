@@ -1,0 +1,27 @@
+<input type="checkbox" id="btn-modal">
+<label for="btn-modal" class="lbl-modal">Añadir</label>
+<div class="modal">
+    <div class="contenedor-modal">
+        <div class="header" id="header-alerta"></div>
+        <label for="btn-modal"><i class="fas fa-times"></i></label>
+        <div class="contenido" id="contenido-del-modal">
+            <section id="modal-body">
+                <p id="text-modal-body"></p>
+                <div id="renombrar">
+                    <span id="validNameRenombrar"></span>
+                    <div id="divRenombrar">
+                        <input type="text" id="inputRenombrar" placeholder="Nuevo Nombre">
+                    </div>
+                    <div id="divRenombrarFile">
+                        <input type="text" id="inputRenombrarFile" placeholder="Nuevo Nombre">
+                        <input type="text" disabled id="extRenombrar">
+                    </div>
+                </div>
+            </section>
+            <section id="modal-footer">
+                <button id="cancelar" (click)="cerrar()">Cancelar</button>
+                <button class="confirmar" (click)="confirmar()">Confirmar</button>
+            </section>
+        </div>
+    </div>
+</div>

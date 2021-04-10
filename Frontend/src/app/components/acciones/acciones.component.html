@@ -1,0 +1,14 @@
+<div class="dropdown-container">
+    <div (click)="toggle()">
+        <i class="fas fa-circle"></i>
+        <i class="fas fa-circle"></i>
+        <i class="fas fa-circle"></i>
+    </div>
+    <ul id="menu{{path}}">
+        <li (click)="renombrar()">Renombrar</li>
+        <li (click)="mover()">Mover</li>
+        <li (click)="copiar()">Copiar</li>
+        <li (click)="eliminar()">Eliminar</li>
+        <li class="ulClose" (click)="closeAll()"><i (click)="closeAll()" class="fas fa-times"></i></li>
+    </ul>
+</div>
