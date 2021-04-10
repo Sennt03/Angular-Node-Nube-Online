@@ -15,4 +15,4 @@ Sistema de nube online tipo google drive
 * Eliminar
 * Mover
 
-Link: [SenntCloud]:'https://senntcloud.herokuapp.com'
+Link: [SenntCloud] https://senntcloud.herokuapp.com
