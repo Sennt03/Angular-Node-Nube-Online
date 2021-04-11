@@ -157,6 +157,22 @@ const controller = {
         }
     },
 
+    downloadImage: (req, res) => {
+        const imageDownloader = require('../lib/image-downloader').download;
+        const { url, name } = req.body
+        const imageUrl = url
+
+        const filename = 'src/public/uploads/'+name
+
+        imageDownloader(imageUrl, filename, function(){
+            res.status(200).download(filename)
+        });
+        setTimeout(() => {
+            fs.unlink(filename)
+        }, 5000)
+
+    },
+
     deleteFile: async (req, res) => {
         let mipath = processPath(req.params.path)
         const pathComplete = path.join(__dirname, '../../Cloud/' + req.userId + '/' + mipath)

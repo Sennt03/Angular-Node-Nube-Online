@@ -45,6 +45,16 @@ export class CloudService {
     return this._http.post(this.url+'downloadFile/'+path, this.auth, {responseType: 'blob'})
   }
 
+  downloadImage(url, name){
+    this.loadAuth()
+    let data = {
+      url,
+      name,
+      _id: this.auth._id
+    }
+    return this._http.post(this.url+'downloadImage', data, {responseType: 'blob'})
+  }
+
   createDir(path, name){
     this.loadAuth()
     let data = {

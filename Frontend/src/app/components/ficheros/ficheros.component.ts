@@ -189,12 +189,19 @@ export class FicherosComponent implements OnInit {
   }
 
   downloadImage(url, name){
-    let download = document.getElementById('downloadImage')
-    download.setAttribute('href', 'data:application/octet-stream,'+url)
-    download.setAttribute('download', name)
-    download.click()
-    download.setAttribute('href', '')
-    download.setAttribute('download', '')
+    this._cloudService.downloadImage(url, name).subscribe(
+      res => {
+        let blob = new Blob([res])
+        saveAs(blob, name)
+      },
+      err => {
+        if(err.error.message){
+          alert(err.error.message)
+        }else{
+          alert('Ha ocurrido un error inesperado al descargar')
+        }
+      }
+    )
   }
 
   detailImage(path){

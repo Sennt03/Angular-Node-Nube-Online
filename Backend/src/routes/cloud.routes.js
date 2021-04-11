@@ -10,6 +10,7 @@ router.post('/detailFile/:path?', [verifyToken, verifyId], CloudController.detai
 router.post('/getImage/:path?', [verifyToken, verifyId], CloudController.getImage)
 /* UPLOAD & DOWLOAD */
 router.post('/downloadFile/:path?', [verifyToken, verifyId], CloudController.downloadFile)
+router.post('/downloadImage', [verifyToken, verifyId], CloudController.downloadImage)
 router.post('/createDir/:path?', [verifyToken, verifyId], CloudController.createDir)
 router.post('/uploadFile/:path?', [verifyToken, verifyId], CloudController.uploadFile)
 /* ACCIONES */
