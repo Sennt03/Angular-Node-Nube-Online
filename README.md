@@ -1,6 +1,6 @@
 # Mean Stack Nube Online
 App SPA, con Angular y NodeJS
-Sistema de nube online tipo google drive
+Sistema de nube online tipo google drive.
 
 ### Solamente creas tu cuenta y puedes:
 * Crear carpetas
