@@ -1,0 +1,54 @@
+<div id="div-upload">
+    <div id="nameuser">
+        <h3>{{ username }}</h3>
+    </div>
+    <div id="upload">
+        <div id="upload-1">
+            <h3>Crear Carpeta</h3>
+            <div class="confirm" style="display: flex;" *ngIf="dirOk">
+                <p>{{ dirMessage }}</p>
+                <i style="padding-left: 10px;font-size: 18px;cursor: pointer;display: block;margin-left: auto;" (click)="reseatAll()" class="fas fa-times"></i>
+            </div>
+            <div class="err" style="display: flex;" *ngIf="dirErr">
+                <p>{{ dirMessage }}</p>
+                <i style="padding-left: 10px;font-size: 18px;cursor: pointer;display: block;margin-left: auto;" (click)="reseatAll()" class="fas fa-times"></i>
+            </div>
+            <form #createDirForm="ngForm" (ngSubmit)="createDir()" id="formCreateDir">
+                <div class="inputs">
+                    <input type="text" name="name" placeholder="Nombre" [(ngModel)]="name">
+                    <div class="icon">
+                        <input type="submit" value="">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="upload-2">
+            <h3>Subir Archivo</h3>
+            <div class="confirm" style="display: flex;" *ngIf="fileOk">
+                <p>{{ fileMessage }}</p>
+                <i style="padding-left: 10px;font-size: 18px;cursor: pointer;display: block;margin-left: auto;" (click)="reseatAll()" class="fas fa-times"></i>
+            </div>
+            <div class="err" style="display: flex;" *ngIf="fileErr">
+                <p>{{ fileMessage }}</p>
+                <i style="padding-left: 10px;font-size: 18px;cursor: pointer;display: block;margin-left: auto;" (click)="reseatAll()" class="fas fa-times"></i>
+            </div>
+            <div id="nameFile" *ngIf="files" style="display: flex;">
+                <p>{{ nameFile }}</p>
+                <i style="padding-left: 10px;font-size: 18px;cursor: pointer;display: block;margin-left: auto;" (click)="reseatInput()" class="fas fa-times"></i>
+            </div>
+            <form #uploadFileForm="ngForm" (ngSubmit)="uploadFile($event)" id="formUploadFile">
+                <div class="inputs">
+                    
+                    <input (change)="selectFile($event)" type="file" name="file" id="archivo">
+                    <label for="archivo">Seleccionar archivo</label>
+                    
+                    <div class="icon">
+                        <input id="a" type="submit" value="">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

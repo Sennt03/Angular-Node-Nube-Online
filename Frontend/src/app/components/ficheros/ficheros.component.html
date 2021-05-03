@@ -1,0 +1,114 @@
+<upload *ngIf="exist" [username]="username" [path]="path"></upload>
+
+<modal [pathAct]="path"></modal>
+
+<div id="detailFile" *ngIf="haveDetail">
+    <div class="titleFile">
+        <h4><i style="font-size: 16px;margin-left: 3px;" class="fas fa-file-alt"></i> {{FileDetail.name}}</h4>
+        <i (click)="closeDetail()" class="fas fa-times"></i>
+    </div>
+    <div class="detailFile">
+        <div class="textFile">
+            <p>Extension: {{FileDetail.ext}}</p>
+            <p>Peso: {{FileDetail.size}}</p>
+        </div>
+        <div class="dowload">
+            <i (click)="download(FileDetail.path, FileDetail.name, FileDetail.ext)" class="fas fa-download"></i>
+        </div>
+    </div>
+</div>
+
+<div id="detailFile" *ngIf="haveDetailImage">
+    <div class="titleFile">
+        <h4><i style="font-size: 16px;margin-left: 3px;" class="fas fa-file-alt"></i> {{ImageDetail.name}}</h4>
+        <i (click)="closeDetailImage()" class="fas fa-times"></i>
+    </div>
+    <div class="detailFile">
+        <div class="textFile">
+            <p>Extension: {{ImageDetail.ext}}</p>
+            <p>Peso: {{ImageDetail.size}}</p>
+        </div>
+        <div class="dowload">
+            <a style="display: none;" id="downloadImage"></a>
+            <i (click)="downloadImage(ImageDetail.url, ImageDetail.name)" class="fas fa-download"></i>
+        </div>
+    </div>
+</div>
+
+<div id="div-upload-2">
+    <div id="nameuser">
+        <h3>Ficheros</h3>
+    </div>
+    <div *ngIf="exist; else dontExist">
+        
+        <div id="anterior" *ngIf="havePath">
+            <a [routerLink]="['/']"><i class="fas fa-home"></i></a>
+            <div></div>
+            <a [routerLink]="[pathAnterior]"><i class="fas fa-reply">   ..</i></a>
+        </div>
+
+        <div id="div-ficheros">
+            <section id="ficheros" *ngIf="lleno;else carpetaVacia">
+                <article class="fichero" *ngFor="let dir of dirs">
+                    <acciones [path]="path + '-' + dir" *ngIf="havePath; else dontPathAccDir"></acciones>
+                    <ng-template #dontPathAccDir>
+                        <acciones [path]="dir"></acciones>
+                    </ng-template>
+                    <i class="fas fa-folder-open fa-2x carpeta"></i>
+                    <div class="texto" *ngIf="havePath; else dontPath">
+                        <p (click)="openDir(path + '-' + dir)">{{ dir }}</p>
+                    </div>
+                    <ng-template #dontPath>
+                        <div class="texto">
+                            <a [routerLink]="['/path/', dir]">{{ dir }}</a>
+                        </div>
+                    </ng-template>
+                </article>
+                <article class="fichero" *ngFor="let file of files">
+                    <acciones [path]="path + '-' + file" [file]='true' *ngIf="havePath; else dontPathAccFile"></acciones>
+                    <ng-template #dontPathAccFile>
+                        <acciones [path]="file" [file]='true'></acciones>
+                    </ng-template>
+                    <i class="fas fa-file-alt fa-2x archivo"></i>
+                    <div class="texto" *ngIf="havePath; else dontPathFile">
+                        <p (click)="detailFile(path + '-' + file)">{{ file }}</p>
+                    </div>
+                    <ng-template #dontPathFile>
+                        <div class="texto">
+                            <p (click)="detailFile(file)">{{ file }}</p>
+                        </div>
+                    </ng-template>
+                </article>
+                <article class="fichero" *ngFor="let imagen of images">
+                    <acciones [path]="path + '-' + imagen" [imagen]='true' *ngIf="havePath; else dontPathAccImage"></acciones>
+                    <ng-template #dontPathAccImage>
+                        <acciones [path]="imagen" [imagen]='true'></acciones>
+                    </ng-template>
+                    <i class="far fa-image fa-2x imagen"></i>
+                    <div class="texto" *ngIf="havePath; else dontPathImage">
+                        <p (click)="detailImage(path + '-' + imagen)">{{ imagen }}</p>
+                    </div>
+                    <ng-template #dontPathImage>
+                        <div class="texto">
+                            <p (click)="detailImage(imagen)">{{ imagen }}</p>
+                        </div>
+                    </ng-template>
+                </article>
+                
+            </section>
+            <ng-template #carpetaVacia>
+                <h3 id="carpetaVacia" *ngIf="havePath; else cloudVacia">La carpeta esta vacia</h3>
+            </ng-template>
+            <ng-template #cloudVacia>
+                <h3 id="carpetaVacia">!Tu nube esta vacia¡. Aqui puedes subir cualquier archivo o crear carpetas y desde cualquier dispositivo solo iniciando sesion podras descargarlos.</h3>
+            </ng-template>
+        </div>
+    </div>
+
+    <ng-template #dontExist>
+        <div id="div-ficheros">
+            <h3>La carpeta no existe</h3>
+            <a [routerLink]="['/']" style="padding: 0 15px 15px 15px;display: block;color: #000;">Inicio</a>
+        </div>
+    </ng-template>
+</div>

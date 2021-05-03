@@ -1,0 +1,20 @@
+<div id="auth">
+    <div class="bandaBlanca">
+
+    </div>
+    <form id="login" class="auth" #loginForm="ngForm" (ngSubmit)="login()">
+        <p>Login</p>
+        <div class="err" *ngIf="err">
+            {{ errMessage }}
+        </div>
+        <div class="confirm" *ngIf="cargando">
+            Cargando...
+        </div>
+        
+        <input name="email" type="email" placeholder="Email" [(ngModel)]="user.email">
+        <input name="password" type="password" placeholder="Contraseña" [(ngModel)]="user.password">
+        
+        <input type="submit" value="Iniciar sesion">
+        <a [routerLink]="['/register']">¿No tienes cuenta? Registrate aqui</a>
+    </form>
+</div>
