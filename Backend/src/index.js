@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, '../public/index.html'))
-// })
+// })a
 
 // Server
 app.listen(app.get('port'), () => console.log('Server on port: '+app.get('port')))
