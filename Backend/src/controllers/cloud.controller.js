@@ -7,7 +7,7 @@ const controller = {
     registerDir: async (req, res) => {
         const pathComplete = path.join(__dirname, '../../Cloud/' + req.userId)
         try{
-            await fs.mkdir(pathComplete, {recursive: true})
+            await fs.mkdir(pathComplete)
             res.send({message: 'Nuevo espacio registrado, !Bienvenido¡'})
         }catch(e){
             if(e.code == 'EEXIST'){
@@ -105,15 +105,19 @@ const controller = {
         try{
             await fs.mkdir(pathComplete)
             // Copiar archvio para que el servidor no la elimine por estar vacia
-            const fileToCopy = path.join(__dirname, '../../Cloud/central/archivoDeAccion.api.senntcloud.txt')
-            const pathCompleteToCopy = path.join(pathComplete, 'archivoDeAccion.api.senntcloud.txt')
-            await fs.copyFile(fileToCopy, pathCompleteToCopy)
+            // const fileToCopy = path.join(__dirname, '../../Cloud/central/archivoDeAccion.api.senntcloud.txt')
+            // const pathCompleteToCopy = path.join(pathComplete, 'archivoDeAccion.api.senntcloud.txt')
+            // await fs.copyFile(fileToCopy, pathCompleteToCopy)
 
             res.send({message: 'Carpeta creada correctamente'})
         }catch(e){
-            if(e.code == 'ENOENT') res.status(403).send({message: 'Ruta inexistente'})
-            if(e.code == 'EEXIST') res.status(403).send({message: 'La carpeta ya existe'})
-            res.status(403).send({message: 'Ha ocurrido un error inesperado'})
+            if(e.code == 'ENOENT'){
+                res.status(403).send({message: 'Ruta inexistente'})
+            }else if(e.code == 'EEXIST'){
+                res.status(403).send({message: 'La carpeta ya existe'})
+            }else{
+                res.status(403).send({message: 'Ha ocurrido un error inesperado'})
+            }
         }
 
     },
