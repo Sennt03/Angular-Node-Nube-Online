@@ -16,8 +16,7 @@ const controller = {
                 // res.status(500).send('Ha ocurrido un error al registrar el espacio')
                 res.status(500).json({
                     error: e,
-                    path: pathComplete,
-                    exists: isDir(path.join(__dirname, '../../Cloud'))
+                    path: pathComplete
                 })
             }
         }
