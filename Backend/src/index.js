@@ -30,9 +30,9 @@ app.use('/api/senntcloud/cloud', require('./routes/cloud.routes'))
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, 'public')))
 
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../public/index.html'))
-// })a
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'))
+})
 
 // Server
 app.listen(app.get('port'), () => console.log('Server on port: '+app.get('port')))
