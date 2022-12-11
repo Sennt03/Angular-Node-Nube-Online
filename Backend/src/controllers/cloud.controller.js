@@ -14,7 +14,11 @@ const controller = {
                 res.status(200).send({message: '!Bienvenido¡'})
             }else{
                 // res.status(500).send('Ha ocurrido un error al registrar el espacio')
-                res.status(500).send(e)
+                res.status(500).send({
+                    'error': e,
+                    path: pathComplete,
+                    dirname: __dirname
+                })
             }
         }
     },
