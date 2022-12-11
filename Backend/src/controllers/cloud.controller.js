@@ -7,13 +7,14 @@ const controller = {
     registerDir: async (req, res) => {
         const pathComplete = path.join(__dirname, '../../Cloud/' + req.userId)
         try{
-            await fs.mkdir(pathComplete)
+            await fs.mkdir(pathComplete, {recursive: true})
             res.send({message: 'Nuevo espacio registrado, !Bienvenido¡'})
         }catch(e){
             if(e.code == 'EEXIST'){
                 res.status(200).send({message: '!Bienvenido¡'})
             }else{
-                res.status(500).send('Ha ocurrido un error al registrar el espacio')
+                // res.status(500).send('Ha ocurrido un error al registrar el espacio')
+                res.status(500).send(e)
             }
         }
     },
