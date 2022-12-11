@@ -13,11 +13,7 @@ const controller = {
             if(e.code == 'EEXIST'){
                 res.status(200).send({message: '!Bienvenido¡'})
             }else{
-                // res.status(500).send('Ha ocurrido un error al registrar el espacio')
-                const existe = fs.existsSync(path.join(__dirname, '../../Cloud'))
-                res.status(500).json({
-                    existe
-                })
+                res.status(500).send('Ha ocurrido un error al registrar el espacio')
             }
         }
     },
