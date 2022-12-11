@@ -1,3 +1,3 @@
 export const Global = {
-    url: '/api/senntcloud/'
+    url: '/api/'
 }
