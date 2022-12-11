@@ -5,6 +5,7 @@ const Imagen = require('../models/Imagen')
 
 const controller = {
     registerDir: async (req, res) => {
+        path.resolve()
         const pathComplete = path.join(__dirname, '../../Cloud/' + req.userId)
         try{
             await fs.mkdir(pathComplete, {recursive: true})
@@ -14,8 +15,8 @@ const controller = {
                 res.status(200).send({message: '!Bienvenido¡'})
             }else{
                 // res.status(500).send('Ha ocurrido un error al registrar el espacio')
-                res.status(500).send({
-                    'error': e,
+                res.status(500).json({
+                    error: e,
                     path: pathComplete,
                     dirname: __dirname
                 })
