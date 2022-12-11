@@ -14,12 +14,7 @@ const controller = {
             if(e.code == 'EEXIST'){
                 res.status(200).send({message: '!Bienvenido¡'})
             }else{
-                // res.status(500).send('Ha ocurrido un error al registrar el espacio')
-                res.status(500).json({
-                    error: e,
-                    path: pathComplete,
-                    dirname: __dirname
-                })
+                res.status(500).send('Ha ocurrido un error al registrar el espacio')
             }
         }
     },
